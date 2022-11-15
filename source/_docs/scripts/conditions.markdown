@@ -435,25 +435,27 @@ Within an automation, template conditions also have access to the `trigger` vari
 
 ### Template condition shorthand notation
 
-The template condition has a shorthand notation that can be used to make your scripts and automations shorter.
+The template condition has a shorthand notation that can be used to make your scripts and automations shorter. <br>
+It must be wrapped in apostrophes (```""```), unless folding (```>```) is used; then they must be omitted (folding and a list cannot be cominbed). <br>
+Note: use ```condition```; cross reference with [choose](https://www.home-assistant.io/docs/scripts/#choose-a-group-of-actions) where it needs to be ```conditions```.
 
 For example:
 
 {% raw %}
 
 ```yaml
-conditions: "{{ (state_attr('device_tracker.iphone', 'battery_level')|int) > 50 }}"
+condition: "{{ (state_attr('device_tracker.iphone', 'battery_level')|int) > 50 }}"
 ```
 
 {% endraw %}
 
 Or in a list of conditions, allowing to use existing conditions as described in this
-chapter and one or more shorthand template conditions
+chapter and one or more shorthand template conditions.
 
 {% raw %}
 
 ```yaml
-conditions:
+condition:
   - "{{ (state_attr('device_tracker.iphone', 'battery_level')|int) > 50 }}"
   - condition: state
     entity_id: alarm_control_panel.home
